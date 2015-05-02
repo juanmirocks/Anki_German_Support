@@ -15,37 +15,6 @@ def find_html_tag(line):
             return line[:s], line[s:e], line[e:]
 
 
-# def apply_styles_wo_html(line, tokens_dict):
-#     res = ''
-#     inwordp = pluralp = False
-#     last = len(line) - 1
-#     for i in range(last + 1):
-#         c = line[i]
-#         if inwordp:
-#             if c == ',':
-#                 pluralp = True
-#                 word += c
-#             elif c.isspace():
-#                 if pluralp:
-#                     pluralp = False
-#                     word += c
-#                 else:
-#                     res += span_style_hook(word, tokens_dict[inwordp]) + c
-#                     inwordp = pluralp = False
-#             else:
-#                 word += c
-#         else:
-#             if c in tokens_dict and i < last and (line[i+1].isupper() or line[i+1] == '['):
-#                 word = c
-#                 inwordp = c #True
-#             else:
-#                 res += c
-#     else:
-#         if inwordp: res += span_style_hook(word, tokens_dict[inwordp])
-
-#     return res
-
-
 def apply_styles_wo_html(line, tokens_dict):
     res = ''
     inwordp = False
