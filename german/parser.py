@@ -16,14 +16,14 @@ def find_html_tag(line):
 
 
 def apply_styles_wo_html(line, tokens_dict):
-    res = ''
+    ret = ''
     inwordp = False
     last = len(line) - 1
     for i in range(last + 1):
         c = line[i]
         if inwordp:
             if c.isspace() or c == ',':
-                res += span_style_hook(word, tokens_dict[inwordp]) + c
+                ret += span_style_hook(word, tokens_dict[inwordp]) + c
                 inwordp = False
             else:
                 word += c
@@ -32,19 +32,19 @@ def apply_styles_wo_html(line, tokens_dict):
                 word = c
                 inwordp = c #True
             else:
-                res += c
+                ret += c
     else:
-        if inwordp: res += span_style_hook(word, tokens_dict[inwordp])
+        if inwordp: ret += span_style_hook(word, tokens_dict[inwordp])
 
-    return res
+    return ret
 
 
 def apply_styles(line, tokens_dict):
-    res = ''
+    ret = ''
     while True:
         l, c, r = find_html_tag(line)
-        res += apply_styles_wo_html(l, tokens_dict)
-        res += c
+        ret += apply_styles_wo_html(l, tokens_dict)
+        ret += c
         if r: line = r
         else:
-            return res
+            return ret
