@@ -1,9 +1,10 @@
-# Copyright (C) 2009 Juan Miguel Cejuela
+# Copyright (C) 2015 Juan Miguel Cejuela
+#
+# For more info or if you have issues: https://github.com/jmcejuela/Anki_German_Support
+#
 
-#import german.model
-import german.parser
-import german.conf
+#
+# Feel free to modify `conf.py` to change the default configuration
+#
+
 import german.hook
-
-#from aqt import mw
-#mw.registerPlugin("German Support", 10)

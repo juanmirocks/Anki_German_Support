@@ -1,8 +1,9 @@
 import german.parser
 
-# Case insensitive, that is, German == german
+# Values are case insensitive, that is, German == german
 APPLY_ON_NOTES = ['german']
 
+# Values are case sensitive, that is, Back != back
 APPLY_ON_FIELDS = ['Back', 'Bedeutung', 'Antwort']
 
 GERMAN_GENDERS_COLORS = {
@@ -10,8 +11,3 @@ GERMAN_GENDERS_COLORS = {
 's' : 'color:#00aa00;', #neutral, daS
 'e' : 'color:#ff0000;' #feminine, diE
 }
-
-#-----------------------------------------------------------------------------
-
-def apply_german_genders(line):
-    return german.parser.apply_styles(line, GERMAN_GENDERS_COLORS)

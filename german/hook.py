@@ -2,10 +2,19 @@ from anki.hooks import addHook
 from aqt import mw
 
 import conf
+import german.parser
 
+#TODO all array searches should stop early. But ifilter is not available in Anki?
 def onFocusLost(flag, n, fidx):
-    if conf.APPLY_ON_NOTES[0] not in n.model()['name'].lower():
-        return flag
+    currentNote = n.model()['name'].lower()
+    matchingNote = None
+
+    for noteTypeKey in conf.APPLY_ON_NOTES:
+        if noteTypeKey in currentNote:
+            matchingNote = noteTypeKey
+
+    if not matchingNote:
+        return flag;
 
     src = None
 
@@ -23,9 +32,10 @@ def onFocusLost(flag, n, fidx):
         return flag
 
     try:
-        tmp = conf.apply_german_genders(origText)
+        tmp = german.parser.apply_styles(origText, conf.GERMAN_GENDERS_COLORS)
         n[src] = tmp
-    except Exception:
+    except Exception as e:
+        #raise
         raise Exception("Unexpected error in German Support addon. Please submit an issue at: https://github.com/jmcejuela/Anki_German_Support/issues")
 
     return True
