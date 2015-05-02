@@ -1,3 +1,8 @@
+You can find the addon listed on the [Anki webpage](https://ankiweb.net/shared/info/1409845882)
+
+The code for installation is: `1409845882`
+
+
 ## Features:
 
 * **Automatic colored recognition for genders:**
