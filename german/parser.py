@@ -1,13 +1,3 @@
-# -*- coding: utf-8 -*-
-#  parser.py --- parser
-# 
-# Copyright (C) 2009 Juan Miguel Cejuela 
-# 
-# created: 2009-07-11
-# updated: 2009-08-26
-# 
-# 
-
 def span_style_hook(word, style):
     return '<span style="' + style + '">' + word + '</span>'
 
@@ -52,7 +42,7 @@ def find_html_tag(line):
 #                 res += c
 #     else:
 #         if inwordp: res += span_style_hook(word, tokens_dict[inwordp])
-            
+
 #     return res
 
 
@@ -76,7 +66,7 @@ def apply_styles_wo_html(line, tokens_dict):
                 res += c
     else:
         if inwordp: res += span_style_hook(word, tokens_dict[inwordp])
-            
+
     return res
 
 
@@ -89,19 +79,3 @@ def apply_styles(line, tokens_dict):
         if r: line = r
         else:
             return res
-
-
-
-
-
-
-
-
-
-
-            
-
-
-
-
-    

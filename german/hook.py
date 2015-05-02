@@ -1,52 +1,34 @@
-# -*- coding: utf-8 -*-
-#  hook.py --- hook to Anki
-#
-# Copyright (C) 2009 Juan Miguel Cejuela
-#
-# created: 2009-07-11
-# updated: 2009-07-11
-#
-#
-
-import re, subprocess
-from anki.utils import findTag
 from anki.hooks import addHook
+from aqt import mw
 
-import german.styles
+import conf
 
+def onFocusLost(flag, n, fidx):
+    if conf.APPLY_ON_NOTES[0] not in n.model()['name'].lower():
+        return flag
 
-#
-# Global
-#
+    src = None
 
-modelTag = "German"
-#srcField = "Ausdruck"
-#dstField = "Ausdruck" #yes, the same
-# in alle!
+    for fid, name in enumerate(mw.col.models.fieldNames(n.model())):
+        for f in conf.APPLY_ON_FIELDS:
+            if name == f:
+                src = f
+                srcIdx = fid
 
+    if not src or (srcIdx != fidx):
+        return flag
 
-#
-# Fact Hook
-#
+    origText = mw.col.media.strip(n[src])
+    if not origText:
+        return flag
 
-def onFocusLost(fact, field):
-    #if field.name != srcField:
-    #    return
-    if not findTag(modelTag, fact.model.tags):
-        return
-
-    origText = re.sub("\[sound:.+?\]", "", field.value)
-    tmp = german.styles.apply_german_genders(origText)
     try:
-        tmp = german.styles.apply_german_genders(origText)
-        fact[field.name] = tmp
+        tmp = conf.apply_german_genders(origText)
+        n[src] = tmp
     except Exception:
-#        from ui.utils import showInfo
-#        showInfo("in German Support: something wrong happened! Please send the HTML code to ")
-        return
+        raise Exception("Unexpected error in German Support addon. Please submit an issue at: https://github.com/jmcejuela/Anki_German_Support/issues")
 
-#
-# Add Hook
-#
+    return True
 
-addHook('fact.focusLost', onFocusLost)
+
+addHook('editFocusLost', onFocusLost)
