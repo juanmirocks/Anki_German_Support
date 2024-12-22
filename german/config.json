@@ -1,0 +1,16 @@
+{
+  "apply_on_notes": [
+    "german",
+    "basic"
+  ],
+  "apply_on_fields": [
+    "Back",
+    "Bedeutung",
+    "Antwort"
+  ],
+  "german_genders_colors": {
+    "r": "color:#0000ff;",
+    "s": "color:#00aa00;",
+    "e": "color:#ff0000;"
+  }
+}

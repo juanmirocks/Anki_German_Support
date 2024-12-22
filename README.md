@@ -1,19 +1,23 @@
-You can find the addon listed on the [Anki webpage](https://ankiweb.net/shared/info/1409845882)
+# Anki Add-On, German Support
 
-The code for installation is: `1409845882`
+## Install
 
+Git clone this repository and add it to the add-ons folder; see <https://addon-docs.ankiweb.net/addon-folders.html>
 
-## Features:
+## Features
 
 * **Automatic colored recognition for genders:**
 
   Whenever found `rS`, `eS`, or `sS` (S being a 'Substantiv'), S is styled with the default gender color.
 
-
-## Use:
+## Use
 
 Add your notes using a note type with a name including "German". The coloring only applies to fields named "Back", "Bedeutung", or "Antwort"
 
-## Configuration:
+## Configuration
 
-You can change all defaults modifying [[conf.py]]
+You can change all defaults modifying [config.json](german/config.json).
+
+## Developing / Debugging
+
+See <https://addon-docs.ankiweb.net/console-output.html#showing-the-console>.
